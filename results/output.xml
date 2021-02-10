@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.2 (Python 3.9.1 on win32)" generated="20210210 17:02:21.218" rpa="false">
+<suite id="s1" name="TestSitePracticeBDD" source="C:\Users\patri\Downloads\SuiteSiteTesteAutomacao\tests\TestSitePracticeBDD.robot">
+<test id="s1-t1" name="Cenário 06: Adicionar Cliente">
+<kw name="Abrir Navegador" library="ResourceBDD" type="setup">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20210210 17:02:21.468" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<status status="PASS" starttime="20210210 17:02:21.468" endtime="20210210 17:02:22.752"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:21.468" endtime="20210210 17:02:22.752"></status>
+</kw>
+<kw name="Dado que estou na página home do site" library="ResourceBDD">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>http://automationpractice.com/</arg>
+</arguments>
+<msg timestamp="20210210 17:02:22.757" level="INFO">Opening url 'http://automationpractice.com/'</msg>
+<status status="PASS" starttime="20210210 17:02:22.757" endtime="20210210 17:02:35.974"></status>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>My Store</arg>
+</arguments>
+<msg timestamp="20210210 17:02:35.981" level="INFO">Page title is 'My Store'.</msg>
+<status status="PASS" starttime="20210210 17:02:35.975" endtime="20210210 17:02:35.982"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:22.755" endtime="20210210 17:02:35.982"></status>
+</kw>
+<kw name="Quando eu Clicar no botão superior direito “Sign in&quot;" library="ResourceBDD">
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//*[@id="header"]//a[@class="login"]</arg>
+</arguments>
+<msg timestamp="20210210 17:02:35.983" level="INFO">Clicking element 'xpath=//*[@id="header"]//a[@class="login"]'.</msg>
+<status status="PASS" starttime="20210210 17:02:35.983" endtime="20210210 17:02:38.212"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:35.982" endtime="20210210 17:02:38.213"></status>
+</kw>
+<kw name="E inserir um e-mail válido" library="ResourceBDD">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>id=email_create</arg>
+</arguments>
+<status status="PASS" starttime="20210210 17:02:38.215" endtime="20210210 17:02:38.254"></status>
+</kw>
+<kw name="Generate Random String" library="String">
+<doc>Generates a string with a desired ``length`` from the given ``chars``.</doc>
+<assign>
+<var>${EMAIL}</var>
+</assign>
+<msg timestamp="20210210 17:02:38.254" level="INFO">${EMAIL} = lu2GFpLO</msg>
+<status status="PASS" starttime="20210210 17:02:38.254" endtime="20210210 17:02:38.254"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=email_create</arg>
+<arg>${EMAIL}@email.com</arg>
+</arguments>
+<msg timestamp="20210210 17:02:38.254" level="INFO">Typing text 'lu2GFpLO@email.com' into text field 'id=email_create'.</msg>
+<status status="PASS" starttime="20210210 17:02:38.254" endtime="20210210 17:02:38.412"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:38.214" endtime="20210210 17:02:38.412"></status>
+</kw>
+<kw name="E Clicar no botão &quot;Create an account&quot;" library="ResourceBDD">
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>id=SubmitCreate</arg>
+</arguments>
+<msg timestamp="20210210 17:02:38.414" level="INFO">Clicking button 'id=SubmitCreate'.</msg>
+<status status="PASS" starttime="20210210 17:02:38.414" endtime="20210210 17:02:38.519"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:38.413" endtime="20210210 17:02:38.519"></status>
+</kw>
+<kw name="E Preencher os campos obrigatórios." library="ResourceBDD">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//*[@id="account-creation_form"]//h3[contains(text(),"Your personal information")]</arg>
+</arguments>
+<status status="PASS" starttime="20210210 17:02:38.521" endtime="20210210 17:02:40.770"></status>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=id_gender2</arg>
+</arguments>
+<msg timestamp="20210210 17:02:40.771" level="INFO">Clicking element 'id=id_gender2'.</msg>
+<status status="PASS" starttime="20210210 17:02:40.771" endtime="20210210 17:02:40.842"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=customer_firstname</arg>
+<arg>Patricia</arg>
+</arguments>
+<msg timestamp="20210210 17:02:40.842" level="INFO">Typing text 'Patricia' into text field 'id=customer_firstname'.</msg>
+<status status="PASS" starttime="20210210 17:02:40.842" endtime="20210210 17:02:40.993"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=customer_lastname</arg>
+<arg>Alves</arg>
+</arguments>
+<msg timestamp="20210210 17:02:40.993" level="INFO">Typing text 'Alves' into text field 'id=customer_lastname'.</msg>
+<status status="PASS" starttime="20210210 17:02:40.993" endtime="20210210 17:02:41.126"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=passwd</arg>
+<arg>TesteTeste</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.127" level="INFO">Typing text 'TesteTeste' into text field 'id=passwd'.</msg>
+<status status="PASS" starttime="20210210 17:02:41.126" endtime="20210210 17:02:41.258"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=address1</arg>
+<arg>Rua Londrina, Bairro Centro</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.259" level="INFO">Typing text 'Rua Londrina, Bairro Centro' into text field 'id=address1'.</msg>
+<status status="PASS" starttime="20210210 17:02:41.259" endtime="20210210 17:02:41.514"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=city</arg>
+<arg>Londrina</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.514" level="INFO">Typing text 'Londrina' into text field 'id=city'.</msg>
+<status status="PASS" starttime="20210210 17:02:41.514" endtime="20210210 17:02:41.655"></status>
+</kw>
+<kw name="Set Focus To Element" library="SeleniumLibrary">
+<doc>Sets the focus to the element identified by ``locator``.</doc>
+<arguments>
+<arg>id=id_state</arg>
+</arguments>
+<status status="PASS" starttime="20210210 17:02:41.655" endtime="20210210 17:02:41.680"></status>
+</kw>
+<kw name="Select From List By Index" library="SeleniumLibrary">
+<doc>Selects options from selection list ``locator`` by ``indexes``.</doc>
+<arguments>
+<arg>id=id_state</arg>
+<arg>3</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.680" level="INFO">Selecting options from selection list 'id=id_state' by index 3.</msg>
+<status status="PASS" starttime="20210210 17:02:41.680" endtime="20210210 17:02:41.789"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=postcode</arg>
+<arg>76706</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.789" level="INFO">Typing text '76706' into text field 'id=postcode'.</msg>
+<status status="PASS" starttime="20210210 17:02:41.789" endtime="20210210 17:02:41.910"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>id=phone_mobile</arg>
+<arg>99556790</arg>
+</arguments>
+<msg timestamp="20210210 17:02:41.911" level="INFO">Typing text '99556790' into text field 'id=phone_mobile'.</msg>
+<status status="PASS" starttime="20210210 17:02:41.910" endtime="20210210 17:02:42.040"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:38.520" endtime="20210210 17:02:42.040"></status>
+</kw>
+<kw name="E Clicar em &quot;Register&quot; para finalizar o cadastro." library="ResourceBDD">
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>submitAccount</arg>
+</arguments>
+<msg timestamp="20210210 17:02:42.042" level="INFO">Clicking button 'submitAccount'.</msg>
+<status status="PASS" starttime="20210210 17:02:42.041" endtime="20210210 17:02:45.292"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:42.041" endtime="20210210 17:02:45.292"></status>
+</kw>
+<kw name="Então a página de gerenciamento da conta deve ser exibida." library="ResourceBDD">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//*[@id="center_column"]/p</arg>
+</arguments>
+<status status="PASS" starttime="20210210 17:02:45.293" endtime="20210210 17:02:45.326"></status>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//*[@id="center_column"]/p</arg>
+<arg>Welcome to your account. Here you can manage all of your personal information and orders.</arg>
+</arguments>
+<msg timestamp="20210210 17:02:45.327" level="INFO">Verifying element 'xpath=//*[@id="center_column"]/p' contains exact text 'Welcome to your account. Here you can manage all of your personal information and orders.'.</msg>
+<status status="PASS" starttime="20210210 17:02:45.327" endtime="20210210 17:02:45.350"></status>
+</kw>
+<kw name="Element Text Should Be" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//*[@id="header"]/div[2]//div[1]/a/span</arg>
+<arg>Patricia Alves</arg>
+</arguments>
+<msg timestamp="20210210 17:02:45.350" level="INFO">Verifying element 'xpath=//*[@id="header"]/div[2]//div[1]/a/span' contains exact text 'Patricia Alves'.</msg>
+<status status="PASS" starttime="20210210 17:02:45.350" endtime="20210210 17:02:45.375"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:45.293" endtime="20210210 17:02:45.376"></status>
+</kw>
+<kw name="Fechar Navegador" library="ResourceBDD" type="teardown">
+<kw name="Close Browser" library="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20210210 17:02:45.377" endtime="20210210 17:02:47.563"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:45.377" endtime="20210210 17:02:47.564"></status>
+</kw>
+<status status="PASS" starttime="20210210 17:02:21.468" endtime="20210210 17:02:47.566" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20210210 17:02:21.218" endtime="20210210 17:02:47.570"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TestSitePracticeBDD">TestSitePracticeBDD</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

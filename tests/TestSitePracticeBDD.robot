@@ -16,9 +16,9 @@ Cenário 02: Pesquisar produto não existente
 
 Cenário 03: Listar Produtos
     Dado que estou na página home do site
-    Quando eu Passar o mouse por cima da categoria "Women" no menu principal superior de categorias
-    E Clicar na sub-categoria "Summer Dresses"
-    Então Uma página com os produtos da sub-categoria "Summer Dresses" deve ser exibida.
+    Quando eu acessar a categoria "Women"
+    E consultar a sub-categoria "Summer Dresses"
+    Então a página deve exibir os produtos da sub-categoria "Summer Dresses"
 
 Cenário 04: Adicionar Produtos no Carrinho
     Dado que estou na página home do site

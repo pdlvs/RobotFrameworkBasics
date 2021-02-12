@@ -1,10 +1,13 @@
 *** Settings ***
 Library         SeleniumLibrary
 Library         String
+Library         BuiltIn
 
 *** Variables ***
 ${BROWSER}  chrome
 ${URL}      http://automationpractice.com
+&{DADOS}    nome=Patricia sobrenome=Alves senha=TesteTeste endereço=Rua Londrina, Bairro Centro
+...         cidade=Londrina cep=76706 celular=99556790 estado=3    
 
 *** Keywords ***
 ###Setup e Teardown###
@@ -12,6 +15,13 @@ Abrir Navegador
     Open Browser    about:blank  ${BROWSER}
 Fechar Navegador
     Close Browser
+
+Gerar endereço de e-mail
+    [Arguments]         ${NOME}
+    ${STRING_GERADA}    Generate Random String
+    ${USER_EMAIL}       Set Variable    ${NOME}${STRING_GERADA}@email.com 
+    
+    [Return]            ${USER_EMAIL} 
 
 ###Passo a passo###
 Dado que estou na página home do site
@@ -32,16 +42,21 @@ Então a página deve exibir a mensagem "${MENSAGEM_ALERTA}"
      Wait until Element Is Visible    xpath=//*[@id="center_column"]//p[@class="alert alert-warning"]
      Element Text Should Be           xpath=//*[@id="center_column"]//p[@class="alert alert-warning"]    ${MENSAGEM_ALERTA}
 
-Quando eu Passar o mouse por cima da categoria "${CATEGORIA}" no menu principal superior de categorias
-     Wait until Element Is Visible  xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
-     Mouse Over                     xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+Quando eu acessar a categoria "${CATEGORIA}"
+    Wait Until Element Is Visible   xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
+    Mouse Over                      xpath=//*[@id="block_top_menu"]//a[@title="${CATEGORIA}"]
 
-E Clicar na sub-categoria "${SUB_CATEGORIA}"
-    Click Link                      xpath=//*[@id="block_top_menu"]//a[@href='${URL}/index.php?id_category=11&controller=category']
+E consultar a sub-categoria "${SUB_CATEGORIA}"
+    Wait Until Element Is Visible   xpath=//*[@id="block_top_menu"]//a[@title="${SUB_CATEGORIA}"]
+    Click Element                   xpath=//*[@id="block_top_menu"]//a[@title="${SUB_CATEGORIA}"]
 
-Então Uma página com os produtos da sub-categoria "${SUB_CATEGORIA}" deve ser exibida.
-    Wait until element is visible   css=#center_column > h1 > span.cat-name
-    Title Should Be                 Summer Dresses - My Store
+Então a página deve exibir os produtos da sub-categoria "${SUB_CATEGORIA}"
+    @{DRESSES}  Create List     Printed Summer Dress    Printed Summer Dress    Printed Chiffon Dress
+    Wait until Element Is Visible  xpath=//*[@id="center_column"]/h1/span[1][@class="cat-name"]
+    Page Should Contain Element    xpath=//*[@id="center_column"]/h1/span[contains(text(),"${SUB_CATEGORIA}")]
+    Page Should Contain Element    xpath=//*[@id="center_column"]/ul/li[1]/div/div[2]/h5/a[@title="${DRESSES[0]}"]
+    Page Should Contain Element    xpath=//*[@id="center_column"]/ul/li[2]/div/div[2]/h5/a[@title="${DRESSES[1]}"]
+    Page Should Contain Element    xpath=//*[@id="center_column"]/ul/li[3]/div/div[2]/h5/a[@title="${DRESSES[2]}"]
 
 E Clicar no botão "Add to cart"
     Wait until element is visible    xpath=//*[@id="center_column"]//a[@title="Add to cart"]
@@ -52,7 +67,7 @@ E exibir a tela de confirmação
     Page Should Contain Element     xpath=//*[@id="layer_cart"]
 
 E Clicar no botão "Proceed to checkout" do produto
-    Wait until element is visible   xpath=//*[@id="layer_cart"]//a
+    Wait Until Element Is Visible   xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
     Click Element                   xpath=//*[@id="layer_cart"]//a[@title="Proceed to checkout"]
 
 Então A tela do carrinho de compras deve ser exibido, com os dados do produto e valores.
@@ -77,8 +92,8 @@ Quando eu Clicar no botão superior direito “Sign in"
 
 E inserir um e-mail válido
     Wait until Element Is Visible   id=email_create
-    ${EMAIL}                        Generate Random String
-    Input Text                      id=email_create    ${EMAIL}@email.com
+    ${EMAIL}                        Gerar endereço de e-mail    ${DADOS.nome}
+    Input Text                      id=email_create    ${EMAIL}
 
 E Clicar no botão "Create an account"
     Click Button    id=SubmitCreate
@@ -86,15 +101,15 @@ E Clicar no botão "Create an account"
 E Preencher os campos obrigatórios.
     Wait Until Element Is Visible   xpath=//*[@id="account-creation_form"]//h3[contains(text(),"Your personal information")]
     Click Element                   id=id_gender2
-    Input Text                      id=customer_firstname    Patricia
-    Input Text                      id=customer_lastname     Alves
-    Input Text                      id=passwd                TesteTeste
-    Input Text                      id=address1              Rua Londrina, Bairro Centro
-    Input Text                      id=city                  Londrina
+    Input Text                      id=customer_firstname    ${DADOS.nome}
+    Input Text                      id=customer_lastname     ${DADOS.sobrenome}
+    Input Text                      id=passwd                ${DADOS.senha}
+    Input Text                      id=address1              ${DADOS.endereco}
+    Input Text                      id=city                  ${DADOS.cidade}
     Set Focus To Element            id=id_state
-    Select From List By Index       id=id_state              3
-    Input Text                      id=postcode              76706
-    Input Text                      id=phone_mobile          99556790
+    Select From List By Index       id=id_state              ${DADOS.cidade}
+    Input Text                      id=postcode              ${DADOS.cep}
+    Input Text                      id=phone_mobile          ${DADOS.celular}
 
 E Clicar em "Register" para finalizar o cadastro.
     Click Button    submitAccount
